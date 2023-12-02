@@ -1,4 +1,4 @@
-# Project Name
+# Credit Card transaction PDF to Excel
 
 This is python and React application to convert credit card transaction inside pdf to excel
 
