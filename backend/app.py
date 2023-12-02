@@ -2,8 +2,8 @@ from flask import Flask, request, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 
-from pdf_processing import extract_text_from_pdf
-from data_parsing import parse_statement
+from pdf_processing import process_pdf
+from data_parsing import parse_transactions
 from excel_extraction import create_excel
 
 
@@ -30,10 +30,10 @@ def upload_file():
             filename = secure_filename(file.filename)
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             file.save(file_path)
-            extracted_text = extract_text_from_pdf(file_path)
-            transactions = parse_statement(extracted_text)
+            extracted_text = process_pdf(file_path)
+            transactions = parse_transactions(extracted_text)
             create_excel(transactions, filename="output.xlsx")
-            print(transactions)
+            print(extracted_text)
             return '<pre>' + extracted_text + '</pre>'
             # return 'File uploaded and processed. Excel file created.'
         else:
