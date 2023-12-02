@@ -1,7 +1,14 @@
 import React from "react";
+import { AppBar, Toolbar, Typography } from "@mui/material";
 
 const Header = () => {
-  return <h1>Header</h1>;
+  return (
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6">PDF to Excel Converter</Typography>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 export default Header;

@@ -1,10 +1,17 @@
-import "./App.css";
+import React from "react";
+import { ThemeProvider } from "@mui/material/styles";
+import theme from "./theme/theme";
+import Header from "./components/Header";
+import FileUpload from "./components/FileUpload";
 
 function App() {
   return (
-    <div className="App">
-      <h1>Credit Card Statement Converter</h1>
-    </div>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <Header />
+        <FileUpload />
+      </div>
+    </ThemeProvider>
   );
 }
 

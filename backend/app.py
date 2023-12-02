@@ -5,13 +5,14 @@ import os
 from pdf_processing import process_pdf
 from data_parsing import parse_transactions
 from excel_extraction import create_excel
-
+from flask_cors import CORS
 
 
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'pdf'}
 
 app = Flask(__name__)
+CORS(app)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 def allowed_files(filename):
