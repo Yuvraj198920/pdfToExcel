@@ -73,6 +73,7 @@ const FileUpload = () => {
           color="primary"
           onClick={handleUpload}
           sx={{ marginLeft: 2 }}
+          disabled={loading}
         >
           Upload
         </Button>
