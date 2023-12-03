@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Button, Typography, Paper, Box } from "@mui/material";
 import axios from "axios";
 import * as XLSX from "xlsx";
+import Loader from "../theme/loader";
 
 const FileUpload = () => {
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
@@ -20,6 +22,7 @@ const FileUpload = () => {
     XLSX.writeFile(wb, "Transactions.xlsx");
   };
   const handleUpload = async () => {
+    setLoading(true);
     if (!file) {
       alert("Please select a file first!");
       return;
@@ -41,8 +44,10 @@ const FileUpload = () => {
       if (response.status === 200) {
         handleDownload(response.data);
       }
+      setLoading(false);
       alert("File uploaded successfully!");
     } catch (error) {
+      setLoading(false);
       console.error("Error uploading file:", error);
       alert("Error uploading file");
     }
@@ -71,6 +76,7 @@ const FileUpload = () => {
         >
           Upload
         </Button>
+        {loading && <Loader />}
       </Paper>
     </Box>
   );
