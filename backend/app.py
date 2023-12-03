@@ -1,4 +1,4 @@
-from flask import Flask, request, flash, redirect, url_for
+from flask import Flask, jsonify, request, flash, redirect, url_for
 from werkzeug.utils import secure_filename
 import os
 
@@ -33,9 +33,9 @@ def upload_file():
             file.save(file_path)
             extracted_text = process_pdf(file_path)
             transactions = parse_transactions(extracted_text)
-            create_excel(transactions, filename="output.xlsx")
-            print(extracted_text)
-            return '<pre>' + extracted_text + '</pre>'
+            print (jsonify(transactions))
+            # create_excel(transactions, filename="output.xlsx")
+            return jsonify(transactions)
             # return 'File uploaded and processed. Excel file created.'
         else:
             return 'No valid file provided', 400
